@@ -1,0 +1,52 @@
+.size-section h3 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 0.5rem;
+}
+
+.size-btn {
+  background: white;
+  border: 2px solid #dee2e6;
+  padding: 0.8rem 0.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 45px;
+}
+
+.size-btn:hover {
+  border-color: #3498db;
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.size-btn.active {
+  background: #3498db;
+  border-color: #3498db;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .size-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+  }
+  
+  .size-btn {
+    padding: 0.6rem 0.3rem;
+    font-size: 0.9rem;
+  }
+}

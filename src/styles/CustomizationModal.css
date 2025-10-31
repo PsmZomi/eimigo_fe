@@ -1,0 +1,164 @@
+.customizer-modal {
+  background: white;
+  border-radius: 15px;
+  max-width: 1000px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #eee;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px 15px 0 0;
+}
+
+.modal-header h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #95a5a6;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #e74c3c;
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.shoe-preview-large {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  padding: 3rem;
+  min-height: 300px;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  isolation: isolate;
+}
+
+.preview-shoe-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+  background: transparent;
+  mix-blend-mode: normal;
+  isolation: isolate;
+}
+
+.customizer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.price-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.current-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2ecc71;
+  margin-bottom: 1rem;
+}
+
+.selected-options {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.selected-options p {
+  margin: 0.5rem 0;
+}
+
+.option-value {
+  font-weight: 600;
+  color: #495057;
+}
+
+.add-to-cart-btn {
+  background: linear-gradient(45deg, #2ecc71, #27ae60);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.add-to-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .customizer-modal {
+    width: 98%;
+    max-height: 95vh;
+  }
+  
+  .modal-header {
+    padding: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .modal-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .shoe-preview-large {
+    padding: 2rem;
+    min-height: 250px;
+  }
+  
+  .current-price {
+    font-size: 1.5rem;
+  }
+}

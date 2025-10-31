@@ -1,0 +1,152 @@
+.color-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.color-section h3 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.shoe-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.shoe-image {
+  width: 250px;
+  height: auto;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.shoe-image:hover {
+  transform: scale(1.05);
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 0.8rem;
+}
+
+.color-option {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+  border-color: #3498db;
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.color-option.active {
+  border-color: #2c3e50;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(44, 62, 80, 0.4);
+}
+
+.color-name {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #6c757d;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.color-option:hover .color-name {
+  opacity: 1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .color-option {
+    width: 50px;
+    height: 50px;
+  }
+
+  .shoe-image {
+    width: 200px;
+  }
+}
+.shoe-display-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.shoe-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.shoe-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.shoe-image {
+  width: 250px;
+  height: auto;
+}
+
+.color-fade {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.shoe-description {
+  color: #555;
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.shoe-price {
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.shoe-original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-weight: 400;
+  margin-left: 8px;
+}
