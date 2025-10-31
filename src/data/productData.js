@@ -40,7 +40,7 @@ export const products = [
     discount: 20,
     images: [shoe20, shoe2, eimigo1,shoe21],
     description:
-      "Experience ultimate comfort with our Highlander sneakers. Perfect for casual wear and light activities. Made with premium materials that ensure durability and style.",
+      "Experience ultimate comfort with our Highlander sneakers. Perfect for casual wear and light activities.",
     sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Black", "White", "Navy Blue", "Gray"],
     rating: 4.5,
@@ -88,6 +88,8 @@ export const products = [
     originalPrice: 2500,
     discount: 20,
     images: [shoe4, shoe42, shoe43],
+    description:
+      "Step into all-day comfort with Chief-7. Designed for effortless style and lightweight performance wherever you go",
     sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Midnight Black", "White"],
     rating: 4.7,
@@ -135,6 +137,8 @@ export const products = [
     originalPrice: 2500,
     discount: 20,
     images: [shoe3, shoe24, shoe5, shoe1],
+    description:
+      "Built to endure. Rhino combines rugged durability with everyday comfort — perfect for those who move with purpose and style.",
     sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Midnight Black", "White"],
     rating: 4.8,
@@ -182,7 +186,7 @@ export const products = [
     discount: 26,
     images: [ne20, shoe6, shoe62, shoe61, ne17,],
     description:
-      "Designed for athletes who demand performance and style.",
+      "Built for those who move with style — combining everyday comfort and athletic performance.",
     sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Midnight Black", "White"],
     rating: 4.9,
@@ -229,7 +233,7 @@ export const products = [
     discount: 26,
     images: [neright, ne14, ne16, ne18, ne19],
     description:
-      "Designed for athletes who demand performance and style.",
+      "Where comfort meets confidence — made for those who live in style.",
     sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Midnight Black", "White"],
     rating: 4.9,
@@ -275,6 +279,8 @@ export const products = [
     originalPrice: 2500,
     discount: 26,
     images: [ hornbill1,shoe71, shoe42, shoe7],
+    description:
+      "Inspired by the grace and strength of the Hornbill, this pair blends lightweight comfort with bold design — made for those who stand tall and move freely.",
     sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Midnight Black", "White"],
     rating: 4.9,
@@ -319,6 +325,8 @@ export const products = [
     originalPrice: 2500,
     discount: 20,
     images: [shoe11, shoe21, shoe22],
+    description:
+    "Designed for the streets and beyond, The Guardian merges urban style with lasting resilience — your go-to for confident moves every day.",
     sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Midnight Black", "White"],
     rating: 4.9,
@@ -364,7 +372,8 @@ export const products = [
     originalPrice: 3500,
     discount: 20,
     images: [highlander, highlander4, highlander2, highlander3, highback],
-    sizes: [5, 6, 7, 8, 9, 10],
+    description:
+    "Drawing from the spirit of resilience, Highlander reflects strength in every step — crafted for those who never stop exploring.",    sizes: [5, 6, 7, 8, 9, 10],
     colors: ["Midnight Black", "White"],
     rating: 4.9,
     reviews: 3,

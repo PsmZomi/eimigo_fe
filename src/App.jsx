@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import About from "./pages/About";
 import Products from "./pages/Products";
@@ -15,9 +15,23 @@ import ProductDetails from "./pages/ProductDetails";
 import Orders from "./pages/Orders";
 import Profile from "./pages/Profile";
 import NewDrop from "./components/NewDrop";
-import ArticlePage from './pages/ArticlePage';
+import ArticlePage from "./pages/ArticlePage";
 import MyOrders from "./pages/MyOrders";
 import MyWishlist from "./pages/MyWishlist";
+import SizeGuide from "./pages/SizeGuide";
+import ShippingReturns from "./pages/ShippingReturns";
+import HelpCenter from "./pages/HelpCenter";
+
+// ✅ ScrollToTop inside App
+function ScrollToTop({ behavior = "smooth" }) {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior });
+  }, [pathname, behavior]);
+
+  return null;
+}
 
 function App() {
   const navigate = useNavigate();
@@ -27,9 +41,8 @@ function App() {
   const [currentShoe, setCurrentShoe] = useState(null);
   const [toastMessage, setToastMessage] = useState("");
   const [user, setUser] = useState(null);
-  // const [orders, setOrders] = useState([]);
 
-  // User authentication functions
+  // User authentication
   const handleLogin = (userData) => {
     setUser(userData);
     setToastMessage(`Welcome back, ${userData.name}!`);
@@ -57,25 +70,23 @@ function App() {
   };
 
   const addToCart = (item) => {
-    // Check if item already exists in cart
-    const existingItemIndex = cart.findIndex(cartItem => 
-      cartItem.productId === item.productId && 
-      cartItem.selectedSize === item.selectedSize && 
-      cartItem.selectedColor === item.selectedColor
+    const existingItemIndex = cart.findIndex(
+      (cartItem) =>
+        cartItem.productId === item.productId &&
+        cartItem.selectedSize === item.selectedSize &&
+        cartItem.selectedColor === item.selectedColor
     );
 
     if (existingItemIndex > -1) {
-      // Update quantity if item exists
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].quantity += item.quantity;
       setCart(updatedCart);
       setToastMessage(`${item.name} quantity updated in cart!`);
     } else {
-      // Add new item to cart
       setCart([...cart, { ...item, cartId: Date.now() }]);
       setToastMessage(`${item.name} added to cart!`);
     }
-    
+
     closeCustomizer();
     setTimeout(() => setToastMessage(""), 3000);
   };
@@ -88,10 +99,11 @@ function App() {
 
   const updateCartItemQuantity = (id, newQuantity) => {
     if (newQuantity < 1) return;
-    
-    setCart(cart.map(item => 
-      item.cartId === id ? { ...item, quantity: newQuantity } : item
-    ));
+    setCart(
+      cart.map((item) =>
+        item.cartId === id ? { ...item, quantity: newQuantity } : item
+      )
+    );
   };
 
   const clearCart = () => {
@@ -107,44 +119,32 @@ function App() {
     }, 500);
   };
 
-  // // Order functions
-  // const handleCheckoutSuccess = (orderData) => {
-  //   const newOrder = {
-  //     id: `ORD${Date.now()}`,
-  //     date: new Date().toISOString(),
-  //     items: [...cart],
-  //     total: orderData.total,
-  //     status: "confirmed",
-  //     shippingAddress: orderData.shippingAddress,
-  //     paymentMethod: orderData.paymentMethod
-  //   };
-    
-  //   setOrders([...orders, newOrder]);
-  //   setCart([]);
-  //   setToastMessage("Order placed successfully!");
-  // };
-
-  // Calculate cart total
-  const cartTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const cartTotal = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="App relative min-h-screen flex flex-col">
-      <Header 
+      <Header
         user={user}
         onLogout={handleLogout}
         cartCount={cartCount}
-        onCartClick={() => setIsCartOpen(true)} 
+        onCartClick={() => setIsCartOpen(true)}
       />
 
       <main className="grow">
+        {/* ✅ Scroll to top when route changes */}
+        <ScrollToTop />
+
         <Routes>
           {/* Public Routes */}
-          <Route 
-            path="/" 
-            element={<Homepage onCustomizeClick={openCustomizer} />} 
+          <Route
+            path="/"
+            element={<Homepage onCustomizeClick={openCustomizer} />}
           />
-           <Route path="/newdrop" element={<NewDrop />} />
+          <Route path="/newdrop" element={<NewDrop />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/blogs" element={<Blogs />} />
@@ -152,28 +152,22 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/orders" element={<MyOrders />} />
           <Route path="/wishlist" element={<MyWishlist />} />
+          <Route path="/size-guide" element={<SizeGuide />} />
+          <Route path="/shipping-returns" element={<ShippingReturns />} />
+          <Route path="/help-center" element={<HelpCenter />} />
 
-          <Route 
-            path="/login" 
-            element={<Login onLogin={handleLogin} />} 
-          />
-          <Route 
-            path="/signup" 
-            element={<Signup onSignup={handleSignup} />} 
-          />
-          <Route 
-            path="/product/:id" 
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
+          <Route
+            path="/product/:id"
             element={
-              <ProductDetails 
-                addToCart={addToCart} 
-                onBuyNow={handleBuyNow} 
-              />
-            } 
+              <ProductDetails addToCart={addToCart} onBuyNow={handleBuyNow} />
+            }
           />
 
-          {/* Protected Routes - require authentication */}
-          <Route 
-            path="/cart" 
+          {/* Cart */}
+          <Route
+            path="/cart"
             element={
               user ? (
                 <Cart
@@ -187,96 +181,26 @@ function App() {
               ) : (
                 <div className="min-h-screen flex items-center justify-center">
                   <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-4">Live Purchase Coming Soon</h2>
-                    {/* <button 
-                      onClick={() => navigate("/login")}
-                      className="bg-green-500 text-white px-6 py-2 rounded-lg"
-                    >
-                      Login
-                    </button> */}
+                    <h2 className="text-2xl font-bold mb-4">
+                      Live Purchase Coming Soon
+                    </h2>
                   </div>
                 </div>
               )
-            } 
+            }
           />
 
-          {/* <Route 
-            path="/checkout" 
-            element={
-              user ? (
-                <Checkout
-                  cart={cart}
-                  totalPrice={cartTotal}
-                  user={user}
-                  onCheckoutSuccess={handleCheckoutSuccess}
-                />
-              ) : (
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-4">Please log in to checkout</h2>
-                    <button 
-                      onClick={() => navigate("/login")}
-                      className="bg-green-500 text-white px-6 py-2 rounded-lg"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </div>
-              )
-            } 
-          /> */}
-
-          {/* <Route 
-            path="/orders" 
-            element={
-              user ? (
-                <Orders orders={orders} user={user} />
-              ) : (
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-4">Please log in to view orders</h2>
-                    <button 
-                      onClick={() => navigate("/login")}
-                      className="bg-green-500 text-white px-6 py-2 rounded-lg"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </div>
-              )
-            } 
-          /> */}
-
-          {/* <Route 
-            path="/profile" 
-            element={
-              user ? (
-                <Profile user={user} onUpdateUser={setUser} />
-              ) : (
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-4">Please log in to view profile</h2>
-                    <button 
-                      onClick={() => navigate("/login")}
-                      className="bg-green-500 text-white px-6 py-2 rounded-lg"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </div>
-              )
-            } 
-          /> */}
-
           {/* 404 Page */}
-          <Route 
-            path="*" 
+          <Route
+            path="*"
             element={
               <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
                   <h1 className="text-6xl font-bold text-gray-800 mb-4">404</h1>
-                  <p className="text-xl text-gray-600 mb-8">Still in Maintenance.Sorry for the incovenience</p>
-                  <button 
+                  <p className="text-xl text-gray-600 mb-8">
+                    Still in Maintenance. Sorry for the inconvenience.
+                  </p>
+                  <button
                     onClick={() => navigate("/")}
                     className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600"
                   >
@@ -284,12 +208,12 @@ function App() {
                   </button>
                 </div>
               </div>
-            } 
+            }
           />
         </Routes>
       </main>
 
-      {/* Modals */}
+      {/* Customization Modal */}
       {isCustomizerOpen && currentShoe !== null && (
         <CustomizationModal
           shoe={shoeData[currentShoe]}
@@ -299,6 +223,7 @@ function App() {
         />
       )}
 
+      {/* Cart Modal */}
       {isCartOpen && (
         <Cart
           cart={cart}

@@ -2,11 +2,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,55 +23,115 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   setLoading(true);
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      setLoading(false);
-      return;
+  //   if (formData.password !== formData.confirmPassword) {
+  //     setError("Passwords do not match");
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   if (formData.password.length < 6) {
+  //     setError("Password must be at least 6 characters");
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   try {
+  //     // ✅ Create user in Firebase Auth
+  //     const userCredential = await createUserWithEmailAndPassword(
+  //       auth,
+  //       formData.email,
+  //       formData.password
+  //     );
+
+  //     // ✅ Update display name
+  //     await updateProfile(userCredential.user, {
+  //       displayName: formData.name,
+  //     });
+
+  //     console.log("✅ User registered:", userCredential.user);
+
+  //     // Redirect to homepage
+  //     navigate("/");
+  //   } catch (err) {
+  //     console.error("Signup error:", err.message);
+  //     if (err.code === "auth/email-already-in-use") {
+  //       setError("This email is already registered");
+  //     } else {
+  //       setError("Failed to create account. Please try again.");
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setLoading(true);
+
+  if (formData.password !== formData.confirmPassword) {
+    setError("Passwords do not match");
+    setLoading(false);
+    return;
+  }
+
+  if (formData.password.length < 6) {
+    setError("Password must be at least 6 characters");
+    setLoading(false);
+    return;
+  }
+
+  try {
+    // ✅ Create user in Firebase Auth
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      formData.email,
+      formData.password
+    );
+
+    const user = userCredential.user;
+
+    // ✅ Add user info to Firestore
+    await setDoc(doc(db, "users", formData.email), {
+      uname: formData.name,
+      email: formData.email,
+      createdAt: new Date().toISOString(),
+    });
+
+    console.log("✅ User registered:", user.email);
+
+    // ✅ Dispatch to Redux store
+    dispatch(
+      setUser({
+        uid: user.uid,
+        name: formData.name,
+        email: user.email,
+      })
+    );
+
+    // ✅ Redirect to homepage
+    // navigate("/");
+  } catch (err) {
+    console.error("Signup error:", err.message);
+    if (err.code === "auth/email-already-in-use") {
+      setError("This email is already registered");
+    } else {
+      setError("Failed to create account. Please try again.");
     }
-
-    if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      // ✅ Create user in Firebase Auth
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-
-      // ✅ Update display name
-      await updateProfile(userCredential.user, {
-        displayName: formData.name,
-      });
-
-      console.log("✅ User registered:", userCredential.user);
-
-      // Redirect to homepage
-      navigate("/");
-    } catch (err) {
-      console.error("Signup error:", err.message);
-      if (err.code === "auth/email-already-in-use") {
-        setError("This email is already registered");
-      } else {
-        setError("Failed to create account. Please try again.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-r from-gray-100 to-gray-50 px-4">

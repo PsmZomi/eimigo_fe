@@ -217,7 +217,7 @@ const ProductDetails = ({ addToCart, onBuyNow }) => {
               </p>
 
               {/* 📄 Description */}
-              <div className="border-t border-gray-100 pt-3">
+              <div className="border-t border-gray-100 pt-1">
                 <p className="text-gray-700 text-[15px] leading-relaxed text-justify">
                   {product.description}
                 </p>
@@ -306,20 +306,21 @@ const ProductDetails = ({ addToCart, onBuyNow }) => {
 
               {/* 🛒 Buttons */}
               <div className="flex gap-3">
-                <button
+                Live Order coming soon
+                {/* <button
                   onClick={handleAddToCart}
                   disabled={!product.inStock}
                   className="flex-1 bg-[#86bbd8] text-white py-2 rounded font-semibold hover:bg-[#5ea0c5]"
                 >
                   🛒 Add to Cart
-                </button>
-                <button
+                </button> */}
+                {/* <button
                   onClick={handleBuyNow}
                   disabled={!product.inStock}
                   className="flex-1 bg-orange-500 text-white py-2 rounded font-semibold hover:bg-orange-600"
                 >
                   ⚡ Buy Now
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

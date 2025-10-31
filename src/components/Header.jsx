@@ -228,7 +228,7 @@ const Header = () => {
                 )}
               </button> */}
 
-								{/* Profile */}
+		
 								{/* <button
                 onClick={() => navigate("/profile")}
                 className="flex flex-col items-center"

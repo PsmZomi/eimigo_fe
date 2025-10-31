@@ -26,7 +26,7 @@ const Profile = () => {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Profile image upload
+  // Profile image upload
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file || !user) return;

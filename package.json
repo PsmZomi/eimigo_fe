@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.9.2",
     "@tailwindcss/vite": "^4.1.16",
     "dotenv": "^17.2.3",
     "esbuild": "^0.25.11",
@@ -19,8 +20,10 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.4",
     "react-toastify": "^11.0.5",
+    "redux-persist": "^6.0.0",
     "swiper": "^12.0.2"
   },
   "devDependencies": {

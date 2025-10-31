@@ -59,7 +59,7 @@ const Homepage = ({ onCustomizeClick }) => {
 
   const ProductCard = ({ shoe, onClick }) => (
     <div 
-      className="relative group cursor-pointer bg-white overflow-hidden rounded-md shadow-lg flex-shrink-0 w-64 sm:w-72 md:w-80"
+      className="relative group cursor-pointer bg-white overflow-hidden rounded-md shadow-lg shrink-0 w-64 sm:w-72 md:w-80"
       onClick={() => onClick(shoe.id)}
     >
       {/* Product Image */}
@@ -72,7 +72,7 @@ const Homepage = ({ onCustomizeClick }) => {
       </div>
 
       {/* Text Overlay - Bottom Inset */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-radient-to-t from-black/80 to-transparent">
         <div className="text-white">
           <h3 className="text-md sm:text-lg font-semibold mb-1">
             {shoe.name}
@@ -100,8 +100,8 @@ const Homepage = ({ onCustomizeClick }) => {
       <section className="bg-white text-black py-4 px-4 sm:px-6 lg:px-16">
         <div className="max-w-7xl mx-auto text-center mb-14">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 relative inline-block mt-8">
-             Crafted for the <span className="text-green-500">Trendsetters</span>
-            <span className="absolute left-1/2 bottom-[-10px] transform -translate-x-2/3 block w-24 h-1 bg-green-400 rounded-full"></span>
+             Crafted for the Trendsetters
+            <span className="absolute left-1/2 -bottom-2.5 transform -translate-x-2/3 block w-24 h-1 bg-green-400 rounded-full"></span>
           </h2>
         </div>
 
@@ -140,7 +140,7 @@ const Homepage = ({ onCustomizeClick }) => {
                 className="flex overflow-x-auto rounded-2xl snap-x snap-mandatory scrollbar-hide h-96"
               >
                 {[vibeImage, about, shoe3].map((img, index) => (
-                  <div key={index} className="flex-shrink-0 w-full snap-center">
+                  <div key={index} className="shrink-0 w-full snap-center">
                     <img
                       src={img}
                       alt={`EIMIGO Style ${index + 1}`}
@@ -205,7 +205,7 @@ const Homepage = ({ onCustomizeClick }) => {
           </div>
 
           {/* 📄 Info */}
-          <div className="p-2 flex-grow text-center">
+          <div className="p-2 grow text-center">
             <h3 className="font-semibold text-lg text-gray-900 font-heading">
               {shoe.name}
             </h3>
@@ -256,7 +256,7 @@ const Homepage = ({ onCustomizeClick }) => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 inline-block relative">
             Be a Part of Something Bigger
             {/* Underline */}
-            <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] block w-24 h-1 bg-black rounded-full"></span>
+            <span className="absolute left-1/2 transform -translate-x-1/2 -bottom-2.5 block w-24 h-1 bg-black rounded-full"></span>
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto mb-12">
             We're building more than a brand; we're building a community. EIMIGO

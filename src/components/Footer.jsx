@@ -14,9 +14,9 @@ const Footer = () => {
             Where culture meets creation. Explore stories, style guides, and community features from the heart of North East India.
           </p>
           <div className="flex gap-4 mt-2">
-            <a href="#" className="hover:text-yellow-400 transition-colors"><FaFacebookF /></a>
-            <a href="#" className="hover:text-yellow-400 transition-colors"><FaInstagram /></a>
-            <a href="#" className="hover:text-yellow-400 transition-colors"><FaTwitter /></a>
+            <a href="https://www.facebook.com/profile.php?id=61578623204089" className="hover:text-blue-600 transition-colors"><FaFacebookF /></a>
+            <a href="https://www.instagram.com/eimigo.northeast/" className="hover:text-pink-600 transition-colors"><FaInstagram /></a>
+            <a href="#" className="hover:text-blue-700 transition-colors"><FaTwitter /></a>
             <a href="#" className="hover:text-yellow-400 transition-colors"><FaLinkedin /></a>
           </div>
         </div>
@@ -49,9 +49,9 @@ const Footer = () => {
           <ul className="space-y-1 text-gray-400">
             <li><Link to="/shipping-returns" className="hover:text-yellow-400 transition-colors">Shipping & Returns</Link></li>
             <li><Link to="/size-guide" className="hover:text-yellow-400 transition-colors">Size Guide</Link></li>
-            <li><Link to="/faqs" className="hover:text-yellow-400 transition-colors">FAQs</Link></li>
-            <li><Link to="/privacy-policy" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link></li>
-            <li><Link to="/terms-of-service" className="hover:text-yellow-400 transition-colors">Terms of Service</Link></li>
+            <li><Link to="/help-center" className="hover:text-yellow-400 transition-colors">FAQs</Link></li>
+            <li><Link to="/help-center" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link></li>
+            <li><Link to="/help-center" className="hover:text-yellow-400 transition-colors">Terms of Service</Link></li>
           </ul>
         </div>
       </div>
