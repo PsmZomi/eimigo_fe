@@ -137,7 +137,7 @@ function App() {
         onCartClick={() => setIsCartOpen(true)} 
       />
 
-      <main className="flex-grow">
+      <main className="grow">
         <Routes>
           {/* Public Routes */}
           <Route 

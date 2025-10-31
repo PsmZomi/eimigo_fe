@@ -163,7 +163,7 @@ const Header = () => {
 									<button
 										key={link.name}
 										onClick={() => handleNavigation(link.path)}
-										className={`px-4 py-2 rounded text-sm whitespace-nowrap flex-shrink-0 ${
+										className={`px-4 py-2 rounded text-sm whitespace-nowrap shrink-0 ${
 											active
 												? "text-green-400 bg-gray-800"
 												: "text-white hover:text-gray-300 hover:bg-gray-900"
